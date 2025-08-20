@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 테마 변수 */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  
+  /* 추가 테마 변수들 */
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
+/* 기본 폰트 및 스타일링 */
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  @apply font-sans antialiased;
+}
+
+/* 기본 요소 스타일링 */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold tracking-tight;
+}
+
+/* 스크롤바 스타일링 (선택사항) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground));
+}
+import type { Metadata } from "next";
+import { Inter, Roboto_Mono } from "next/font/google";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Your App",
+  description: "Your app description",
+  keywords: ["Next.js", "React", "TypeScript"],
+  authors: [{ name: "Your Name" }],
+  creator: "Your Name",
+  metadataBase: new URL("https://your-domain.com"),
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: "https://your-domain.com",
+    title: "Your App",
+    description: "Your app description",
+    siteName: "Your App",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Your App",
+    description: "Your app description",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+};
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  preload: true,
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  preload: true,
+});
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html 
+      lang="ko" 
+      className={`${inter.variable} ${robotoMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      <body className="min-h-screen bg-background text-foreground font-sans antialiased">
+        <div id="root">{children}</div>
+      </body>
+    </html>
+  );
+}
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "홈 | Your App",
+  description: "Next.js와 Tailwind CSS로 구축된 홈페이지입니다.",
+};
+
+export default function HomePage() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center px-4 py-8">
+      <div className="mx-auto max-w-4xl text-center">
+        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          안녕하세요, Next.js + Tailwind!
+        </h1>
+        <p className="mt-6 text-lg text-muted-foreground sm:text-xl">
+          현대적인 웹 개발을 위한 강력한 조합입니다.
+        </p>
+        <p className="mt-4 font-mono text-base text-muted-foreground sm:text-lg">
+          이 텍스트는 모노스페이스 폰트를 사용합니다.
+        </p>
+        
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <button 
+            className="rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            type="button"
+          >
+            시작하기
+          </button>
+          <button 
+            className="rounded-lg border border-input bg-background px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            type="button"
+          >
+            더 알아보기
+          </button>
+        </div>
+        
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <FeatureCard 
+            title="빠른 개발"
+            description="Next.js의 강력한 기능들로 빠르게 개발하세요"
+            icon="⚡"
+          />
+          <FeatureCard 
+            title="반응형 디자인"
+            description="Tailwind CSS로 아름다운 반응형 UI를 만드세요"
+            icon="📱"
+          />
+          <FeatureCard 
+            title="타입 안전성"
+            description="TypeScript로 안전하고 확장 가능한 코드를 작성하세요"
+            icon="🔒"
+          />
+        </div>
+      </div>
+    </main>
+  );
+}
+
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+function FeatureCard({ title, description, icon }: FeatureCardProps) {
+  return (
+    <div className="rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm transition-all hover:shadow-md">
+      <div className="mb-3 text-3xl">{icon}</div>
+      <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+      <p className="text-sm text-muted-foreground">{description}</p>
+    </div>
+  );
+}
