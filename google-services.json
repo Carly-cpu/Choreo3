@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357551989175",
+    "project_id": "neurokinetic-canvas",
+    "storage_bucket": "neurokinetic-canvas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357551989175:android:ffb4bf39f36261db260832",
+        "android_client_info": {
+          "package_name": "com.neurokinetic.canvas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6z8p-43IbV3EoVclmp4c02aqADaA1PTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
